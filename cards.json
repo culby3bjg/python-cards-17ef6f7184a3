@@ -2,15 +2,22 @@
  "title": "Python Expressions",
  "categories": [
   "Arithmetic operators",
+  "Variables & assignment",
   "Operator precedence",
   "Comparison",
   "Boolean logic",
+  "If, elif & else",
   "Strings",
   "Lists, tuples & dicts",
+  "For loops & range()",
+  "While loops",
   "Membership & identity",
   "Type conversion",
   "Conditional expressions",
-  "Comprehensions"
+  "Built-in functions",
+  "Functions",
+  "Comprehensions",
+  "Common errors"
  ],
  "cards": [
   {
@@ -179,6 +186,149 @@
    "accept": [],
    "tests": 1,
    "id": "pedc9b2816"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "x = 5\nx = x + 2\nprint(x)",
+   "value": "7",
+   "explain": "x = x + 2 takes the old value (5), adds 2, and stores the new value 7 back in x.",
+   "distractors": [
+    "5",
+    "2",
+    "52"
+   ],
+   "id": "p9f763c4ef"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "a = 3\nb = a\na = 10\nprint(b)",
+   "value": "3",
+   "explain": "b was given the value 3. Changing a afterwards does not change b.",
+   "distractors": [
+    "10",
+    "13",
+    "a"
+   ],
+   "id": "pccab8e71c"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "n = 4\nn += 3\nn *= 2\nprint(n)",
+   "value": "14",
+   "explain": "n += 3 makes n 7, then n *= 2 doubles it to 14.",
+   "distractors": [
+    "11",
+    "7",
+    "10"
+   ],
+   "id": "pd9f9954bc"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "name = 'Ken'\ngreeting = 'Hi ' + name\nprint(greeting)",
+   "value": "Hi Ken",
+   "explain": "The variable name holds the text Ken, which gets joined onto \"Hi \". print shows text without quotes.",
+   "distractors": [
+    "Hi name",
+    "'Hi Ken'",
+    "HiKen"
+   ],
+   "id": "p1abc566ee"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "x, y = 1, 2\nx, y = y, x\nprint(x, y)",
+   "value": "2 1",
+   "explain": "The second line swaps them: x gets the value of y, and y gets the value of x.",
+   "distractors": [
+    "1 2",
+    "2 2",
+    "1 1"
+   ],
+   "id": "p556b5b4ff"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "total = 0\ntotal += 5\ntotal -= 2\nprint(total)",
+   "value": "3",
+   "explain": "Start at 0, add 5 (now 5), subtract 2 (now 3).",
+   "distractors": [
+    "5",
+    "7",
+    "-2"
+   ],
+   "id": "pf400fd711"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "s = 'ab'\ns += 'c'\nprint(s * 2)",
+   "value": "abcabc",
+   "explain": "+= also works on text: s becomes 'abc'. Then * 2 repeats it.",
+   "distractors": [
+    "abc abc",
+    "abcc",
+    "abc2"
+   ],
+   "id": "pa1b4814ce"
+  },
+  {
+   "kind": "output",
+   "category": "Variables & assignment",
+   "code": "count = 10\ncount //= 3\nprint(count)",
+   "value": "3",
+   "explain": "//= does floor division and stores the result: 10 // 3 is 3.",
+   "distractors": [
+    "1",
+    "30",
+    "4"
+   ],
+   "id": "p9486170fb"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "Variables & assignment",
+   "prompt": "Create a variable age that holds 30, then add 1 to it using +=",
+   "code": "age = 30\nage += 1",
+   "value": "31",
+   "explain": "A single = stores a value. += adds to the value already in the variable.",
+   "distractors": [
+    "age = 30\nage =+ 1",
+    "age == 30\nage += 1",
+    "age = 30\nage + 1"
+   ],
+   "accept": [],
+   "check": "print(age)",
+   "tests": 1,
+   "id": "p6b8614fb1"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "Variables & assignment",
+   "prompt": "Store 3 in x and 4 in y using one line",
+   "code": "x, y = 3, 4",
+   "value": "3 4",
+   "explain": "Put the names on the left and the values on the right, both separated by commas.",
+   "distractors": [
+    "x = y = 3, 4",
+    "x, y = 4, 3",
+    "x = 3, y = 4"
+   ],
+   "accept": [
+    "x, y = (3, 4)",
+    "(x, y) = (3, 4)"
+   ],
+   "check": "print(x, y)",
+   "tests": 1,
+   "id": "p2e76f2400"
   },
   {
    "kind": "eval",
@@ -624,6 +774,133 @@
    "given": "s = ''",
    "tests": 2,
    "id": "p4100d244b"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "x = 7\nif x > 5:\n    print('big')\nelse:\n    print('small')",
+   "value": "big",
+   "explain": "7 > 5 is True, so the indented line under if runs and the else part is skipped.",
+   "distractors": [
+    "small",
+    "big\nsmall",
+    "(nothing)"
+   ],
+   "id": "pee7c88b87"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "x = 3\nif x > 5:\n    print('big')\nprint('done')",
+   "value": "done",
+   "explain": "3 > 5 is False, so print('big') is skipped. print('done') is not indented, so it always runs.",
+   "distractors": [
+    "big\ndone",
+    "big",
+    "(nothing)"
+   ],
+   "id": "p7b7845824"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "score = 75\nif score >= 90:\n    print('A')\nelif score >= 70:\n    print('C')\nelse:\n    print('F')",
+   "value": "C",
+   "explain": "Python checks from the top: 75 >= 90 is False, 75 >= 70 is True, so it prints C and stops checking.",
+   "distractors": [
+    "A",
+    "F",
+    "C\nF"
+   ],
+   "id": "p694fee9e2"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "n = 10\nif n > 5:\n    print('a')\nif n > 8:\n    print('b')",
+   "value": "a\nb",
+   "explain": "These are two separate if statements. Both are checked, and both are True.",
+   "distractors": [
+    "a",
+    "b",
+    "a b"
+   ],
+   "id": "pff925221c"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "n = 10\nif n > 5:\n    print('a')\nelif n > 8:\n    print('b')",
+   "value": "a",
+   "explain": "elif is only checked when everything above it was False. The first test was True, so elif is skipped.",
+   "distractors": [
+    "a\nb",
+    "b",
+    "(nothing)"
+   ],
+   "id": "paabc0420e"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "x = 0\nif x:\n    print('yes')\nelse:\n    print('no')",
+   "value": "no",
+   "explain": "0 counts as False in an if, so the else part runs.",
+   "distractors": [
+    "yes",
+    "0",
+    "yes\nno"
+   ],
+   "id": "pfb8be46aa"
+  },
+  {
+   "kind": "output",
+   "category": "If, elif & else",
+   "code": "age = 15\nif age >= 13 and age < 20:\n    print('teen')\nprint('bye')",
+   "value": "teen\nbye",
+   "explain": "Both conditions are True, so teen is printed. Then bye always prints.",
+   "distractors": [
+    "teen",
+    "bye",
+    "bye\nteen"
+   ],
+   "id": "pd9bdef7ba"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "If, elif & else",
+   "prompt": "Print 'even' if n is even, otherwise print 'odd'",
+   "code": "if n % 2 == 0:\n    print('even')\nelse:\n    print('odd')",
+   "value": "even",
+   "explain": "n % 2 is the remainder after dividing by 2. It is 0 for even numbers.",
+   "distractors": [
+    "if n % 2 == 0:\n    print('odd')\nelse:\n    print('even')",
+    "if n % 2 = 0:\n    print('even')\nelse:\n    print('odd')",
+    "if n / 2 == 0:\n    print('even')\nelse:\n    print('odd')"
+   ],
+   "accept": [],
+   "given": "n = 4",
+   "tests": 2,
+   "id": "p8e574f55f"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "If, elif & else",
+   "prompt": "Print 'positive' if x > 0, 'zero' if x is 0, otherwise 'negative'",
+   "code": "if x > 0:\n    print('positive')\nelif x == 0:\n    print('zero')\nelse:\n    print('negative')",
+   "value": "positive",
+   "explain": "Use if, then elif for the next check, and else to catch everything left over.",
+   "distractors": [
+    "if x > 0:\n    print('positive')\nif x == 0:\n    print('zero')\nelse:\n    print('negative')",
+    "if x > 0:\n    print('positive')\nelif x = 0:\n    print('zero')\nelse:\n    print('negative')",
+    "if x > 0:\n    print('positive')\nelse x == 0:\n    print('zero')\nelse:\n    print('negative')"
+   ],
+   "accept": [],
+   "given": "x = 5",
+   "tests": 3,
+   "id": "pb71b9f020"
   },
   {
    "kind": "eval",
@@ -1088,6 +1365,240 @@
    "given": "nums = [10, 20, 30, 40]",
    "tests": 2,
    "id": "pf48062ad4"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "for i in range(3):\n    print(i)",
+   "value": "0\n1\n2",
+   "explain": "range(3) counts 0, 1, 2. It starts at 0 and stops BEFORE 3.",
+   "distractors": [
+    "1\n2\n3",
+    "0\n1\n2\n3",
+    "3"
+   ],
+   "id": "p9c4752ddb"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "for i in range(1, 4):\n    print(i * 10)",
+   "value": "10\n20\n30",
+   "explain": "range(1, 4) gives 1, 2, 3, and each one is multiplied by 10.",
+   "distractors": [
+    "0\n10\n20",
+    "10\n20\n30\n40",
+    "60"
+   ],
+   "id": "p6bd87fb8f"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "total = 0\nfor n in [2, 4, 6]:\n    total += n\nprint(total)",
+   "value": "12",
+   "explain": "The loop adds each number to total: 2, then 6, then 12. The print is outside the loop, so it runs once.",
+   "distractors": [
+    "6",
+    "2\n6\n12",
+    "0"
+   ],
+   "id": "pf8c1a9c30"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "for c in 'hi':\n    print(c)",
+   "value": "h\ni",
+   "explain": "Looping over text gives one character at a time, and each print goes on its own line.",
+   "distractors": [
+    "hi",
+    "h i",
+    "'h'\n'i'"
+   ],
+   "id": "p6d424074a"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "for i in range(0, 10, 3):\n    print(i)",
+   "value": "0\n3\n6\n9",
+   "explain": "The third number is the step: start at 0 and go up by 3 while staying below 10.",
+   "distractors": [
+    "0\n3\n6",
+    "3\n6\n9",
+    "0\n3\n6\n9\n12"
+   ],
+   "id": "pc430d06fc"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "count = 0\nfor w in ['a', 'bb', 'ccc']:\n    if len(w) > 1:\n        count += 1\nprint(count)",
+   "value": "2",
+   "explain": "Only 'bb' and 'ccc' are longer than 1 character, so count goes up twice.",
+   "distractors": [
+    "3",
+    "1",
+    "5"
+   ],
+   "id": "pb50f5682e"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "for i in range(3):\n    print('*' * (i + 1))",
+   "value": "*\n**\n***",
+   "explain": "i is 0, 1, 2, so the line prints 1, 2, then 3 stars.",
+   "distractors": [
+    "***\n***\n***",
+    "*\n*\n*",
+    "**\n***\n****"
+   ],
+   "id": "pb40636b2b"
+  },
+  {
+   "kind": "output",
+   "category": "For loops & range()",
+   "code": "for i in range(2):\n    for j in range(2):\n        print(i, j)",
+   "value": "0 0\n0 1\n1 0\n1 1",
+   "explain": "For each value of i, the inner loop runs all the way through j = 0 and j = 1.",
+   "distractors": [
+    "0 0\n1 1",
+    "0 1\n1 0",
+    "1 1\n1 2\n2 1\n2 2"
+   ],
+   "id": "p11a49c625"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "For loops & range()",
+   "prompt": "Print the numbers 1 to 5, one per line",
+   "code": "for i in range(1, 6):\n    print(i)",
+   "value": "1\n2\n3\n4\n5",
+   "explain": "range stops BEFORE the second number, so use range(1, 6) to get 1 through 5.",
+   "distractors": [
+    "for i in range(5):\n    print(i)",
+    "for i in range(1, 5):\n    print(i)",
+    "for i in range(6):\n    print(i)"
+   ],
+   "accept": [],
+   "tests": 1,
+   "id": "pefd658499"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "For loops & range()",
+   "prompt": "Add up all the numbers in the list nums and print the total",
+   "code": "total = 0\nfor n in nums:\n    total += n\nprint(total)",
+   "value": "6",
+   "explain": "Start total at 0 before the loop, add inside the loop, and print once after the loop.",
+   "distractors": [
+    "for n in nums:\n    total = 0\n    total += n\nprint(total)",
+    "total = 0\nfor n in nums:\n    total += n\n    print(total)",
+    "total = 0\nfor n in nums:\n    total = n\nprint(total)"
+   ],
+   "accept": [],
+   "given": "nums = [1, 2, 3]",
+   "tests": 2,
+   "id": "p24807809d"
+  },
+  {
+   "kind": "output",
+   "category": "While loops",
+   "code": "n = 1\nwhile n < 4:\n    print(n)\n    n += 1",
+   "value": "1\n2\n3",
+   "explain": "The loop repeats while n < 4. When n becomes 4, the condition is False and the loop stops.",
+   "distractors": [
+    "1\n2\n3\n4",
+    "0\n1\n2",
+    "4"
+   ],
+   "id": "p6eeef02a9"
+  },
+  {
+   "kind": "output",
+   "category": "While loops",
+   "code": "n = 10\nwhile n > 0:\n    n -= 3\nprint(n)",
+   "value": "-2",
+   "explain": "n goes 10, 7, 4, 1, -2. The loop stops once n is no longer above 0.",
+   "distractors": [
+    "1",
+    "0",
+    "-1"
+   ],
+   "id": "p4a25dd4f6"
+  },
+  {
+   "kind": "output",
+   "category": "While loops",
+   "code": "count = 0\nwhile count < 3:\n    count += 1\nprint(count)",
+   "value": "3",
+   "explain": "count goes up to 3, then count < 3 is False. The print is after the loop, so it runs once.",
+   "distractors": [
+    "2",
+    "4",
+    "1\n2\n3"
+   ],
+   "id": "pb3f60ba36"
+  },
+  {
+   "kind": "output",
+   "category": "While loops",
+   "code": "x = 5\nwhile x > 10:\n    print(x)\nprint('end')",
+   "value": "end",
+   "explain": "5 > 10 is False from the start, so the loop body never runs at all.",
+   "distractors": [
+    "5\nend",
+    "5",
+    "(runs forever)"
+   ],
+   "id": "pbd7cc0f84"
+  },
+  {
+   "kind": "output",
+   "category": "While loops",
+   "code": "n = 0\nwhile True:\n    n += 2\n    if n > 5:\n        break\nprint(n)",
+   "value": "6",
+   "explain": "while True loops until break. n goes 2, 4, 6; 6 > 5, so break exits the loop.",
+   "distractors": [
+    "5",
+    "4",
+    "8"
+   ],
+   "id": "pba6114ca8"
+  },
+  {
+   "kind": "output",
+   "category": "While loops",
+   "code": "x = 1\nwhile x < 20:\n    x *= 2\nprint(x)",
+   "value": "32",
+   "explain": "x doubles 1, 2, 4, 8, 16, 32. At 32 the condition x < 20 is False.",
+   "distractors": [
+    "16",
+    "20",
+    "64"
+   ],
+   "id": "p9d4d2d169"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "While loops",
+   "prompt": "Using a while loop, print 3, 2, 1 (one number per line)",
+   "code": "n = 3\nwhile n > 0:\n    print(n)\n    n -= 1",
+   "value": "3\n2\n1",
+   "explain": "Print first, then subtract 1. Stop when n reaches 0.",
+   "distractors": [
+    "n = 3\nwhile n >= 0:\n    print(n)\n    n -= 1",
+    "n = 3\nwhile n > 1:\n    print(n)\n    n -= 1",
+    "n = 3\nwhile n > 0:\n    n -= 1\n    print(n)"
+   ],
+   "accept": [],
+   "tests": 1,
+   "id": "p758f4902b"
   },
   {
    "kind": "eval",
@@ -1577,6 +2088,316 @@
    "id": "p75774af54"
   },
   {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print('a', 'b', 'c', sep='-')",
+   "value": "a-b-c",
+   "explain": "sep sets what goes between the items (normally a space).",
+   "distractors": [
+    "a b c",
+    "abc",
+    "a-b-c-"
+   ],
+   "id": "p47f7c0f22"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print('Hi', 'Ken')",
+   "value": "Hi Ken",
+   "explain": "With commas, print puts one space between the items.",
+   "distractors": [
+    "HiKen",
+    "Hi, Ken",
+    "Hi\nKen"
+   ],
+   "id": "p1956ef4f8"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print('a', end='')\nprint('b')",
+   "value": "ab",
+   "explain": "end='' stops print from starting a new line, so b appears right after a.",
+   "distractors": [
+    "a\nb",
+    "a b",
+    "b"
+   ],
+   "id": "p9239c5666"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print('a', end=' ')\nprint('b', end='!')",
+   "value": "a b!",
+   "explain": "end replaces the usual new line at the end of each print.",
+   "distractors": [
+    "a\nb!",
+    "a b",
+    "ab!"
+   ],
+   "id": "p3a5042144"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print(round(3.14159, 2))",
+   "value": "3.14",
+   "explain": "round(x, 2) rounds to 2 digits after the decimal point.",
+   "distractors": [
+    "3.1",
+    "3.142",
+    "3"
+   ],
+   "id": "p26e4d3202"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print(round(2.7))",
+   "value": "3",
+   "explain": "round() with one argument rounds to the nearest whole number.",
+   "distractors": [
+    "2",
+    "2.7",
+    "3.0"
+   ],
+   "id": "pc2e4ea87a"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "nums = [3, 9, 4]\nprint(max(nums), min(nums))",
+   "value": "9 3",
+   "explain": "max() gives the largest value and min() the smallest.",
+   "distractors": [
+    "3 9",
+    "9",
+    "9 4"
+   ],
+   "id": "pe16486400"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "names = ['Sam', 'Ana', 'Kim']\nprint(sorted(names))",
+   "value": "['Ana', 'Kim', 'Sam']",
+   "explain": "sorted() puts text in alphabetical order. Printing a list shows the quotes around each string.",
+   "distractors": [
+    "['Sam', 'Ana', 'Kim']",
+    "['Sam', 'Kim', 'Ana']",
+    "['Kim', 'Ana', 'Sam']"
+   ],
+   "id": "p88dc69887"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "nums = [4, 5, 6]\nprint(len(nums) + sum(nums))",
+   "value": "18",
+   "explain": "len() counts 3 items and sum() adds them to 15; 3 + 15 = 18.",
+   "distractors": [
+    "15",
+    "3",
+    "315"
+   ],
+   "id": "p9c8c58d13"
+  },
+  {
+   "kind": "output",
+   "category": "Built-in functions",
+   "code": "print(abs(-7))",
+   "value": "7",
+   "explain": "abs() gives the distance from zero, which is never negative.",
+   "distractors": [
+    "-7",
+    "0",
+    "7.0"
+   ],
+   "id": "p55af69ef5"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "Built-in functions",
+   "prompt": "Print 1, 2 and 3 on one line with commas between them, like 1,2,3",
+   "code": "print(1, 2, 3, sep=',')",
+   "value": "1,2,3",
+   "explain": "sep=',' puts a comma (and no space) between the items.",
+   "distractors": [
+    "print(1, 2, 3)",
+    "print(1, 2, 3, end=',')",
+    "print(1, 2, 3, sep=', ')"
+   ],
+   "accept": [
+    "print('1,2,3')",
+    "print(\"1,2,3\")"
+   ],
+   "tests": 1,
+   "id": "p40b208090"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "Built-in functions",
+   "prompt": "Print the largest number in the list nums",
+   "code": "print(max(nums))",
+   "value": "9",
+   "explain": "max() finds the biggest item in a list.",
+   "distractors": [
+    "print(nums.max())",
+    "print(sum(nums))",
+    "print(nums[-1])"
+   ],
+   "accept": [
+    "print(sorted(nums)[-1])"
+   ],
+   "given": "nums = [3, 9, 4]",
+   "tests": 2,
+   "id": "p72e42be8e"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def double(n):\n    return n * 2\n\nprint(double(4))",
+   "value": "8",
+   "explain": "double(4) runs the function with n = 4 and gives back (returns) 4 * 2.",
+   "distractors": [
+    "4",
+    "16",
+    "None"
+   ],
+   "id": "pce5413bcc"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def greet(name):\n    print('Hi', name)\n\ngreet('Ken')",
+   "value": "Hi Ken",
+   "explain": "Calling greet('Ken') sets name to 'Ken'. print puts a space between the items.",
+   "distractors": [
+    "Hi, Ken",
+    "HiKen",
+    "Hi name"
+   ],
+   "id": "pb9e2f5bbb"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def add(a, b=10):\n    return a + b\n\nprint(add(5))",
+   "value": "15",
+   "explain": "b was not given, so it uses its default value, 10.",
+   "distractors": [
+    "5",
+    "10",
+    "Error"
+   ],
+   "id": "p4a9529f23"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def add(a, b=10):\n    return a + b\n\nprint(add(5, 1))",
+   "value": "6",
+   "explain": "b was given as 1, so the default value 10 is not used.",
+   "distractors": [
+    "15",
+    "16",
+    "5"
+   ],
+   "id": "p1f9417da3"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def say():\n    print('hello')\n\nresult = say()\nprint(result)",
+   "value": "hello\nNone",
+   "explain": "say() prints hello, but it has no return, so it gives back None.",
+   "distractors": [
+    "hello",
+    "hello\nhello",
+    "None"
+   ],
+   "id": "pe3e881fa5"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def square(x):\n    return x * x\n    print('done')\n\nprint(square(3))",
+   "value": "9",
+   "explain": "return ends the function right away, so print('done') never runs.",
+   "distractors": [
+    "done\n9",
+    "9\ndone",
+    "6"
+   ],
+   "id": "pa6f1a790a"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def area(w, h):\n    return w * h\n\nprint(area(h=2, w=5))",
+   "value": "10",
+   "explain": "Arguments can be passed by name, in any order: w is 5 and h is 2.",
+   "distractors": [
+    "7",
+    "25",
+    "4"
+   ],
+   "id": "p476743e20"
+  },
+  {
+   "kind": "output",
+   "category": "Functions",
+   "code": "def is_even(n):\n    return n % 2 == 0\n\nprint(is_even(7))",
+   "value": "False",
+   "explain": "7 % 2 is 1, so n % 2 == 0 is False, and that is what gets returned.",
+   "distractors": [
+    "True",
+    "1",
+    "odd"
+   ],
+   "id": "pffad2d997"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "Functions",
+   "prompt": "Write a function triple(n) that returns n times 3",
+   "code": "def triple(n):\n    return n * 3",
+   "value": "12",
+   "explain": "def names the function and its input; return sends the answer back to whoever called it.",
+   "distractors": [
+    "def triple(n):\n    print(n * 3)",
+    "def triple(n):\n    n * 3",
+    "def triple():\n    return n * 3"
+   ],
+   "accept": [],
+   "check": "print(triple(4))",
+   "tests": 2,
+   "id": "p03d9a762e"
+  },
+  {
+   "kind": "write",
+   "run": "exec",
+   "category": "Functions",
+   "prompt": "Write greet(name) that returns 'Hello, ' plus name, with name defaulting to 'friend'",
+   "code": "def greet(name='friend'):\n    return 'Hello, ' + name",
+   "value": "Hello, friend",
+   "explain": "name='friend' in the def line gives name a default value when no argument is passed.",
+   "distractors": [
+    "def greet(name):\n    return 'Hello, ' + name",
+    "def greet(name='friend'):\n    return 'Hello, name'",
+    "def greet('friend'):\n    return 'Hello, ' + name"
+   ],
+   "accept": [],
+   "check": "print(greet())",
+   "tests": 2,
+   "id": "p4d3d4aa21"
+  },
+  {
    "kind": "eval",
    "category": "Comprehensions",
    "code": "[x * 2 for x in [1, 2, 3]]",
@@ -1738,6 +2559,136 @@
    "given": "words = ['hi', 'hello']",
    "tests": 1,
    "id": "pa5cec99d3"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "print(score)",
+   "value": "NameError",
+   "explain": "score was never created, so Python does not know that name.",
+   "distractors": [
+    "KeyError",
+    "ZeroDivisionError",
+    "TypeError"
+   ],
+   "id": "pd04c0b956"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "name = 'Ken'\nprint(nmae)",
+   "value": "NameError",
+   "explain": "A typo: nmae is not the same name as name.",
+   "distractors": [
+    "ZeroDivisionError",
+    "TypeError",
+    "IndexError"
+   ],
+   "id": "p78ad9f602"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "print('Age: ' + 30)",
+   "value": "TypeError",
+   "explain": "You cannot + text and a number. Use str(30) or an f-string.",
+   "distractors": [
+    "IndexError",
+    "KeyError",
+    "ZeroDivisionError"
+   ],
+   "id": "p4a4485ac4"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "print(len(5))",
+   "value": "TypeError",
+   "explain": "len() needs something with a length, like text or a list, not a number.",
+   "distractors": [
+    "ZeroDivisionError",
+    "NameError",
+    "IndexError"
+   ],
+   "id": "pb0c0edc70"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "def add(a, b):\n    return a + b\n\nprint(add(1))",
+   "value": "TypeError",
+   "explain": "add needs two arguments, but it was called with only one.",
+   "distractors": [
+    "ZeroDivisionError",
+    "NameError",
+    "IndexError"
+   ],
+   "id": "p637e7ec86"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "nums = [1, 2, 3]\nprint(nums[3])",
+   "value": "IndexError",
+   "explain": "Indexes start at 0, so the last one is 2. There is no index 3.",
+   "distractors": [
+    "NameError",
+    "TypeError",
+    "KeyError"
+   ],
+   "id": "p917785e79"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "word = 'hi'\nprint(word[5])",
+   "value": "IndexError",
+   "explain": "'hi' only has positions 0 and 1, so position 5 does not exist.",
+   "distractors": [
+    "TypeError",
+    "KeyError",
+    "ZeroDivisionError"
+   ],
+   "id": "p18139438d"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "ages = {'Ken': 30}\nprint(ages['Byron'])",
+   "value": "KeyError",
+   "explain": "The dict has no key 'Byron'. Use ages.get('Byron') to avoid the error.",
+   "distractors": [
+    "IndexError",
+    "ZeroDivisionError",
+    "NameError"
+   ],
+   "id": "p2336c1cff"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "print(10 / 0)",
+   "value": "ZeroDivisionError",
+   "explain": "Dividing by zero is not allowed.",
+   "distractors": [
+    "IndexError",
+    "KeyError",
+    "NameError"
+   ],
+   "id": "pddb7ea5f6"
+  },
+  {
+   "kind": "error",
+   "category": "Common errors",
+   "code": "total = 10\ncount = 0\nprint(total / count)",
+   "value": "ZeroDivisionError",
+   "explain": "count is 0, so this divides by zero.",
+   "distractors": [
+    "IndexError",
+    "KeyError",
+    "NameError"
+   ],
+   "id": "p1c7a8fbda"
   }
  ]
 }

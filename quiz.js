@@ -16,20 +16,33 @@
     return out;
   }
 
-  function correctText(card) { return card.kind === 'eval' ? card.value : card.code; }
+  /** 'read' = cards where you work out a result (eval / output / error); 'write' = you write the code. */
+  function family(card) { return card.kind === 'write' ? 'write' : 'eval'; }
+  function correctText(card) { return card.kind === 'write' ? card.code : card.value; }
   function acceptable(card) {
-    const list = card.kind === 'eval' ? [card.value] : [card.code].concat(card.accept || []);
+    const list = card.kind === 'write' ? [card.code].concat(card.accept || []) : [card.value];
     return new Set(list.map(key));
+  }
+  /** Printed output: curly quotes -> straight, trim, collapse runs of spaces (print output has no quotes). */
+  function okey(s) {
+    return String(s == null ? '' : s).replace(/[\u2018\u2019\u201B]/g, "'").replace(/[\u201C\u201D]/g, '"').replace(/\s+/g, ' ').trim();
   }
 
   function checkTyped(input, card) {
-    const k = key(input);
-    if (!k) return false;
-    return acceptable(card).has(k);
+    if (!String(input || '').trim()) return false;
+    if (card.kind === 'output') return okey(input) === okey(card.value);
+    if (card.kind === 'error') return okey(input).toLowerCase() === card.value.toLowerCase();
+    return acceptable(card).has(key(input));
   }
 
   /** A friendly hint for common near-misses (still marked wrong). */
   function typedHint(input, card) {
+    if (card.kind === 'output') {
+      const t = okey(input);
+      if (/^(['"]).*\1$/.test(t) && okey(t.slice(1, -1)) === okey(card.value)) return 'Close! print() shows text WITHOUT quotes.';
+      if (t.toLowerCase() === okey(card.value).toLowerCase()) return 'Close! Check upper/lower case.';
+      return '';
+    }
     if (card.kind !== 'eval') return '';
     const k = key(input), v = card.value;
     if (/^'.*'$/.test(v) && k === key(v.slice(1, -1))) return 'Close! The answer is a string, so it needs quotes.';
@@ -47,10 +60,17 @@
   }
 
   /** Long code (e.g. comprehensions) is painful to type on a phone: use multiple choice for it. */
-  function typeable(card) { return correctText(card).length <= 30; }
+  function typeable(card) { const t = correctText(card); return t.indexOf('\n') < 0 && t.length <= 30; }
 
   /** Options: the right answer + the card's 3 hand-written (verified-wrong) distractors. */
+  /** Key used to tell options apart: printed output keeps inner spaces; multi-line code keeps indentation. */
+  function optKey(card, t) {
+    if (card.kind === 'output') return t.split('\n').map(okey).join('\n');
+    if (t.indexOf('\n') >= 0) return t.split('\n').map(l => l.replace(/\s+$/, '')).join('\n');
+    return key(t);
+  }
   function makeOptions(card, rnd) {
+    const key = (t) => optKey(card, t);
     const right = correctText(card);
     const seen = new Set([key(right)]);
     const opts = [{ text: right, right: true }];
@@ -65,7 +85,7 @@
   /** opts: {kind:'eval'|'write'|'mixed', qtype:'mc'|'typed'|'mixed', count:number|'all'} */
   function buildQuestions(cards, opts, rnd) {
     rnd = rnd || Math.random;
-    const pool = shuffle(cards.filter(c => opts.kind === 'mixed' || !opts.kind || c.kind === opts.kind), rnd);
+    const pool = shuffle(cards.filter(c => opts.kind === 'mixed' || !opts.kind || family(c) === opts.kind), rnd);
     const n = opts.count === 'all' ? pool.length : Math.min(+opts.count, pool.length);
     return pool.slice(0, n).map(card => {
       let type = opts.qtype === 'mixed' ? (rnd() < 0.5 ? 'mc' : 'typed') : opts.qtype;
@@ -76,7 +96,7 @@
     });
   }
 
-  const api = { key, checkTyped, typedHint, typeable, makeOptions, buildQuestions, correctText };
+  const api = { key, okey, family, checkTyped, typedHint, typeable, makeOptions, buildQuestions, correctText };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; return; }
   root.Quiz = api;
 
@@ -123,7 +143,7 @@
   }
   function candidates() {
     const sel = catsSelected();
-    return A.deck().cards.filter(c => sel.has(c.category) && (setup.kind === 'mixed' || c.kind === setup.kind));
+    return A.deck().cards.filter(c => sel.has(c.category) && (setup.kind === 'mixed' || family(c) === setup.kind));
   }
 
   function renderSetup() {
@@ -157,7 +177,7 @@
     const d = new Date(iso);
     return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
   }
-  const KIND_LABEL = { eval: 'Evaluate', write: 'Write', mixed: 'Mixed' };
+  const KIND_LABEL = { eval: 'Read code', write: 'Write code', mixed: 'Mixed' };
   const TYPE_LABEL = { mc: 'Multiple choice', typed: 'Typed', mixed: 'Mixed' };
 
   function renderHistory(el) {
@@ -211,13 +231,14 @@
     if (q.type === 'mc') {
       $('tTypedForm').hidden = true;
       $('tOptions').hidden = false;
-      $('tOptions').innerHTML = q.options.map((o, i) => '<button class="opt" data-i="' + i + '"><code>' + esc(o.text) + '</code></button>').join('');
+      $('tOptions').innerHTML = q.options.map((o, i) => '<button class="opt' + (o.text.indexOf('\n') >= 0 ? ' multi' : '') + '" data-i="' + i + '">' +
+        (q.card.kind === 'output' ? '<pre class="out">' + esc(o.text) + '</pre>' : '<code>' + esc(o.text) + '</code>') + '</button>').join('');
     } else {
       $('tOptions').hidden = true;
       $('tTypedForm').hidden = false;
       const inp = $('tInput');
       inp.value = ''; inp.disabled = false; inp.className = '';
-      inp.placeholder = q.card.kind === 'eval' ? 'Type the result…' : 'Type the Python code…';
+      inp.placeholder = ({ eval: 'Type the result…', output: 'Type what it prints…', error: 'Type the error name…' })[q.card.kind] || 'Type the Python code…';
       $('tSubmit').disabled = false;
       setTimeout(() => inp.focus(), 50);
     }

@@ -1,5 +1,5 @@
 /* Offline-first service worker for Python Cards. */
-const CACHE = 'pycards-v1';
+const CACHE = 'pycards-v2';
 const ASSETS = [
   './',
   './index.html',

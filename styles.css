@@ -141,3 +141,39 @@ pre.code{margin:0;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywh
 .list pre.code.mini.muted{font-weight:500;opacity:.8}
 .list .e{margin:6px 0 2px}
 .seg button{padding:0 4px}
+
+/* ---- v2: multi-line snippets & printed output ---- */
+/* Multi-line code keeps every space and line break; it scrolls sideways rather than wrapping (indentation stays true). */
+pre.code.multi{white-space:pre;overflow-x:auto;-webkit-overflow-scrolling:touch;word-break:normal;overflow-wrap:normal;text-align:left}
+.front pre.expr.multi{font-size:16px;line-height:1.45;text-align:left;font-weight:600;padding:14px}
+.back pre.answer.multi{font-size:15px;text-align:left;line-height:1.45}
+pre.out{font-family:var(--mono);white-space:pre;overflow-x:auto;margin:0;text-align:left;background:#0f172a;color:#e2e8f0;
+  border-radius:12px;padding:12px 14px;font-size:17px;line-height:1.4}
+.back pre.out.answer{font-size:20px;font-weight:600;border:2px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+.out-label{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;margin:0 0 4px}
+pre.out.mini{font-size:14px;padding:6px 10px;margin:4px 0}
+.example + pre.out.mini{margin-top:4px}
+.also pre.code.mini{margin:4px 0;font-size:14px;padding:6px 10px}
+.opt.multi{font-size:15px}
+.opt.multi code{white-space:pre;font-size:15px;display:block;overflow-x:auto}
+.opt pre.out{background:none;color:inherit;padding:0;font-size:17px;white-space:pre}
+.feedback pre.out.answer{font-size:17px;margin-top:6px}
+.feedback .out-label{margin-top:6px}
+.list pre.out.mini{font-size:14px}
+/* Narrow phones (iPhone SE 1st gen, 320pt): tighter padding + smaller mono so 30-char lines still fit without scrolling */
+@media (max-width: 359px){
+  main{padding-left:12px;padding-right:12px}
+  .card{padding-left:10px;padding-right:10px}
+  .front pre.expr.multi,.back pre.answer.multi{font-size:13px;padding:10px 8px}
+  pre.out{font-size:14px;padding:10px 8px}
+  .back pre.out.answer{font-size:16px}
+  .opt.multi{padding:10px 10px}
+  .opt.multi code{font-size:13px}
+}
+@media (min-width: 360px) and (max-width: 389px){   /* iPhone SE 2nd/3rd gen, mini: 375pt */
+  .front pre.expr.multi,.back pre.answer.multi{font-size:15px;padding:12px 10px}
+  .opt.multi code{font-size:14px}
+}
+/* printed output is always light text on the dark "terminal" box */
+.back pre.out.answer,.feedback pre.out.answer,pre.out{color:#bbf7d0}
+.back pre.out.answer{text-align:left}

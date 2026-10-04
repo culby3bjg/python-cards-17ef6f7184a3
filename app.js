@@ -2,7 +2,10 @@
 (function () {
   'use strict';
   const LS_KEY = 'pyCards.v1';
-  const VERSION = '1.0.0';
+  const VERSION = '1.1.0';
+  // Categories in the first release. Anyone who had a custom category filter gets later categories switched on.
+  const V1_CATEGORIES = ['Arithmetic operators', 'Operator precedence', 'Comparison', 'Boolean logic', 'Strings',
+    'Lists, tuples & dicts', 'Membership & identity', 'Type conversion', 'Conditional expressions', 'Comprehensions'];
 
   let deck = null;           // {title, categories, cards}
   let progress = null;       // {settings, cards: {sid: state}, tests, version}
@@ -65,7 +68,21 @@
     return new Set(en || deck.categories);
   }
 
-  function kindOk(c) { const k = progress.settings.kinds; return k === 'both' || c.kind === k; }
+  function family(c) { return c.kind === 'write' ? 'write' : 'eval'; }
+  function kindOk(c) { const k = progress.settings.kinds; return k === 'both' || family(c) === k; }
+
+  /** Turn on categories that were added since this device last saw the deck (only matters with a custom filter). */
+  function migrateCategories() {
+    const s = progress.settings;
+    const known = new Set(s.knownCategories || V1_CATEGORIES);
+    const added = deck.categories.filter(c => !known.has(c));
+    if (added.length) {
+      if (Array.isArray(s.enabledCategories)) s.enabledCategories = s.enabledCategories.concat(added.filter(c => !s.enabledCategories.includes(c)));
+      if (s.testSetup && Array.isArray(s.testSetup.cats)) s.testSetup.cats = s.testSetup.cats.concat(added.filter(c => !s.testSetup.cats.includes(c)));
+    }
+    s.knownCategories = Array.from(new Set([...known, ...deck.categories]));
+    saveProgress();
+  }
 
   function sourceCards() {
     const cats = activeCategories();
@@ -144,38 +161,56 @@
   }
 
   // ---------- card rendering (shared with quiz.js) ----------
-  function kindLabel(card) { return card.kind === 'eval' ? 'What does this evaluate to?' : 'Write the expression'; }
+  function kindLabel(card) {
+    if (card.kind === 'write') return card.run === 'exec' ? 'Write the code' : 'Write the expression';
+    return ({ eval: 'What does this evaluate to?', output: 'What does this print?', error: 'Which error does this raise?' })[card.kind];
+  }
+  function codeBlock(code, cls) {
+    return '<pre class="code ' + cls + (code.indexOf('\n') >= 0 ? ' multi' : '') + '">' + esc(code) + '</pre>';
+  }
 
   function frontHTML(card) {
     if (card.kind === 'eval') {
-      return (card.given ? '<div class="given-label">Given</div><pre class="code given">' + esc(card.given) + '</pre>' : '') +
-        '<pre class="code expr">' + esc(card.code) + '</pre>';
+      return (card.given ? '<div class="given-label">Given</div>' + codeBlock(card.given, 'given') : '') + codeBlock(card.code, 'expr');
     }
+    if (card.kind === 'output' || card.kind === 'error') return codeBlock(card.code, 'expr');
     return '<div class="desc">' + esc(card.prompt) + '</div>';
   }
 
   function answerHTML(card) {
-    if (card.kind === 'eval') {
-      return '<pre class="code answer">' + esc(card.value) + '</pre>' +
-        '<p class="explain">' + esc(card.explain) + '</p>';
+    const explain = '<p class="explain">' + esc(card.explain) + '</p>';
+    if (card.kind === 'eval') return codeBlock(card.value, 'answer') + explain;
+    if (card.kind === 'output') return '<div class="out-label">Output</div><pre class="out answer">' + esc(card.value) + '</pre>' + explain;
+    if (card.kind === 'error') return codeBlock(card.value, 'answer') + explain;
+    let h = codeBlock(card.code, 'answer') + explain;
+    if (card.run === 'exec') {
+      h += '<div class="example"><span>Example:</span> ' +
+        (card.given ? 'with <code>' + esc(card.given) + '</code>' : '') +
+        (card.check ? (card.given ? ', then ' : 'then ') + '<code>' + esc(card.check) + '</code>' : '') +
+        (card.given || card.check ? ', it prints:' : 'It prints:') + '</div><pre class="out mini">' + esc(card.value) + '</pre>';
+    } else {
+      h += '<div class="example"><span>Example:</span> ' + (card.given ? 'with <code>' + esc(card.given.replace(/\n/g, '; ')) + '</code>, ' : '') +
+        'it gives <code>' + esc(card.value) + '</code></div>';
     }
-    let h = '<pre class="code answer">' + esc(card.code) + '</pre>';
-    h += '<p class="explain">' + esc(card.explain) + '</p>';
-    h += '<div class="example"><span>Example:</span> ' + (card.given ? 'with <code>' + esc(card.given.replace(/\n/g, '; ')) + '</code>, ' : '') +
-      'it gives <code>' + esc(card.value) + '</code></div>';
     if (card.accept && card.accept.length)
-      h += '<div class="also"><span>Also correct:</span> ' + card.accept.map(a => '<code>' + esc(a) + '</code>').join(' ') + '</div>';
+      h += '<div class="also"><span>Also correct:</span> ' + card.accept.map(a => a.indexOf('\n') >= 0 ? codeBlock(a, 'mini') : '<code>' + esc(a) + '</code>').join(' ') + '</div>';
     return h;
   }
 
   function listItemHTML(card, extraTags) {
-    const top = card.kind === 'eval'
-      ? (card.given ? '<pre class="code mini muted">' + esc(card.given) + '</pre>' : '') + '<pre class="code mini b">' + esc(card.code) + '</pre>'
-      : '<div class="b">' + esc(card.prompt) + '</div>';
-    const ans = card.kind === 'eval' ? card.value : card.code;
-    return '<li>' + top + '<div class="e">→ <code>' + esc(ans) + '</code></div>' +
+    let top, ans;
+    if (card.kind === 'write') {
+      top = '<div class="b">' + esc(card.prompt) + '</div>';
+      ans = codeBlock(card.code, 'mini');
+    } else {
+      top = (card.given ? codeBlock(card.given, 'mini muted') : '') + codeBlock(card.code, 'mini b');
+      ans = card.kind === 'output' ? '<div class="out-label">Output</div><pre class="out mini">' + esc(card.value) + '</pre>'
+        : '→ <code>' + esc(card.value) + '</code>';
+    }
+    const tag = ({ eval: 'evaluate', output: 'what prints', error: 'which error', write: 'write' })[card.kind];
+    return '<li>' + top + '<div class="e">' + ans + '</div>' +
       '<div class="small muted">' + esc(card.explain) + '</div>' +
-      '<div class="m"><span class="tag">' + esc(card.category) + '</span><span class="tag">' + (card.kind === 'eval' ? 'evaluate' : 'write') + '</span>' + (extraTags || '') + '</div></li>';
+      '<div class="m"><span class="tag">' + esc(card.category) + '</span><span class="tag">' + tag + '</span>' + (extraTags || '') + '</div></li>';
   }
 
   // ---------- study ----------
@@ -444,6 +479,7 @@
     progress = loadProgress();
     const res = await fetch('cards.json', { cache: 'no-cache' });
     deck = await res.json();
+    migrateCategories();
     wire();
     QuizUI.initUI({
       deck: () => deck, progress: () => progress, save: saveProgress, showView, sid, toast, esc, SRS,
@@ -457,7 +493,7 @@
 
   window.__py = {
     get progress() { return progress; }, get deck() { return deck; }, get queue() { return queue; }, get current() { return current; },
-    counts, buildQueue, grade, flip, startStudy, sid, getState, showView, saveProgress, LS_KEY
+    counts, buildQueue, grade, flip, startStudy, sid, getState, showView, saveProgress, LS_KEY, frontHTML, answerHTML, kindLabel
   };
 
   boot().catch(e => {

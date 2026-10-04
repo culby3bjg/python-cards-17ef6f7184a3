@@ -1,7 +1,7 @@
 {
   "name": "Python Cards",
   "short_name": "Python Cards",
-  "description": "Python expression flashcards with spaced repetition",
+  "description": "Learn Python with flashcards and spaced repetition",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
