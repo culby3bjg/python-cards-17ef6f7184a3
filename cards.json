@@ -1,0 +1,1743 @@
+{
+ "title": "Python Expressions",
+ "categories": [
+  "Arithmetic operators",
+  "Operator precedence",
+  "Comparison",
+  "Boolean logic",
+  "Strings",
+  "Lists, tuples & dicts",
+  "Membership & identity",
+  "Type conversion",
+  "Conditional expressions",
+  "Comprehensions"
+ ],
+ "cards": [
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "7 / 2",
+   "value": "3.5",
+   "explain": "/ is true division: it always gives a float (a decimal number).",
+   "distractors": [
+    "3",
+    "4",
+    "3.0"
+   ],
+   "id": "pe0becd914"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "8 / 2",
+   "value": "4.0",
+   "explain": "/ always returns a float, even when the division comes out even.",
+   "distractors": [
+    "4",
+    "16",
+    "4.5"
+   ],
+   "id": "p66a812dd4"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "7 // 2",
+   "value": "3",
+   "explain": "// is floor division: divide, then drop down to the whole number.",
+   "distractors": [
+    "3.5",
+    "4",
+    "1"
+   ],
+   "id": "pa2143ae5c"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "17 // 5",
+   "value": "3",
+   "explain": "5 fits into 17 three whole times (5 * 3 = 15).",
+   "distractors": [
+    "3.4",
+    "2",
+    "4"
+   ],
+   "id": "p144d01096"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "7 % 2",
+   "value": "1",
+   "explain": "% gives the remainder: 7 = 2 * 3 + 1.",
+   "distractors": [
+    "3",
+    "3.5",
+    "0"
+   ],
+   "id": "p598980dc1"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "10 % 5",
+   "value": "0",
+   "explain": "5 goes into 10 evenly, so the remainder is 0.",
+   "distractors": [
+    "2",
+    "5",
+    "1"
+   ],
+   "id": "pe46ba8412"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "2 ** 3",
+   "value": "8",
+   "explain": "** means \"to the power of\": 2 * 2 * 2.",
+   "distractors": [
+    "6",
+    "9",
+    "5"
+   ],
+   "id": "pe4845298d"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "7.0 // 2",
+   "value": "3.0",
+   "explain": "Floor division with a float involved gives a float result.",
+   "distractors": [
+    "3",
+    "3.5",
+    "4.0"
+   ],
+   "id": "p793751343"
+  },
+  {
+   "kind": "eval",
+   "category": "Arithmetic operators",
+   "code": "3 + 2.0",
+   "value": "5.0",
+   "explain": "Mixing an int and a float gives a float.",
+   "distractors": [
+    "5",
+    "5.2",
+    "6.0"
+   ],
+   "id": "pa60a60eea"
+  },
+  {
+   "kind": "write",
+   "category": "Arithmetic operators",
+   "prompt": "The remainder when 17 is divided by 5",
+   "code": "17 % 5",
+   "value": "2",
+   "explain": "% gives what is left over after dividing.",
+   "distractors": [
+    "17 // 5",
+    "17 / 5",
+    "5 % 17"
+   ],
+   "accept": [],
+   "tests": 1,
+   "id": "pf1f0275e3"
+  },
+  {
+   "kind": "write",
+   "category": "Arithmetic operators",
+   "prompt": "2 raised to the 10th power",
+   "code": "2 ** 10",
+   "value": "1024",
+   "explain": "** is the power operator (^ is NOT power in Python).",
+   "distractors": [
+    "2 ^ 10",
+    "2 * 10",
+    "10 ** 2"
+   ],
+   "accept": [
+    "pow(2, 10)"
+   ],
+   "tests": 1,
+   "id": "p88a9d0493"
+  },
+  {
+   "kind": "write",
+   "category": "Arithmetic operators",
+   "prompt": "How many whole 3s fit into 20",
+   "code": "20 // 3",
+   "value": "6",
+   "explain": "// divides and keeps only the whole-number part.",
+   "distractors": [
+    "20 / 3",
+    "20 % 3",
+    "3 // 20"
+   ],
+   "accept": [],
+   "tests": 1,
+   "id": "pedc9b2816"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "2 + 3 * 4",
+   "value": "14",
+   "explain": "* happens before +, so it is 2 + 12.",
+   "distractors": [
+    "20",
+    "24",
+    "9"
+   ],
+   "id": "pb16fdc17b"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "(2 + 3) * 4",
+   "value": "20",
+   "explain": "Parentheses go first: 5 * 4.",
+   "distractors": [
+    "14",
+    "24",
+    "9"
+   ],
+   "id": "p3fe21c713"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "10 - 4 - 3",
+   "value": "3",
+   "explain": "Same-level operators go left to right: (10 - 4) - 3.",
+   "distractors": [
+    "9",
+    "1",
+    "17"
+   ],
+   "id": "pbce6b76d1"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "10 - 2 * 3 + 1",
+   "value": "5",
+   "explain": "* first (2 * 3 = 6), then left to right: 10 - 6 + 1.",
+   "distractors": [
+    "25",
+    "3",
+    "13"
+   ],
+   "id": "pe5ee174e3"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "8 / 2 * 4",
+   "value": "16.0",
+   "explain": "/ and * share a level, so left to right: (8 / 2) * 4.",
+   "distractors": [
+    "1.0",
+    "16",
+    "64.0"
+   ],
+   "id": "p45db9f89e"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "1 + 2 * 3 ** 2",
+   "value": "19",
+   "explain": "** first (9), then * (18), then + (19).",
+   "distractors": [
+    "27",
+    "49",
+    "37"
+   ],
+   "id": "p4d1a598c5"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "2 ** 3 ** 2",
+   "value": "512",
+   "explain": "** is the exception: it groups right to left, so 2 ** 9.",
+   "distractors": [
+    "64",
+    "36",
+    "81"
+   ],
+   "id": "p2f81866e5"
+  },
+  {
+   "kind": "eval",
+   "category": "Operator precedence",
+   "code": "3 + 4 > 6",
+   "value": "True",
+   "explain": "Math happens before comparing: 7 > 6.",
+   "distractors": [
+    "False",
+    "7",
+    "1"
+   ],
+   "id": "p67664c79b"
+  },
+  {
+   "kind": "write",
+   "category": "Operator precedence",
+   "prompt": "Add 2 and 3, then multiply the result by 4",
+   "code": "(2 + 3) * 4",
+   "value": "20",
+   "explain": "Parentheses force the addition to happen first.",
+   "distractors": [
+    "2 + 3 * 4",
+    "2 * 4 + 3",
+    "2 + (3 * 4)"
+   ],
+   "accept": [
+    "(3 + 2) * 4",
+    "4 * (2 + 3)",
+    "4 * (3 + 2)"
+   ],
+   "tests": 1,
+   "id": "p7104d65cf"
+  },
+  {
+   "kind": "write",
+   "category": "Operator precedence",
+   "prompt": "The average of 4 and 8 (add them, then divide by 2)",
+   "code": "(4 + 8) / 2",
+   "value": "6.0",
+   "explain": "Without parentheses, / would happen before +.",
+   "distractors": [
+    "4 + 8 / 2",
+    "4 + 8 // 2",
+    "(4 + 8) % 2"
+   ],
+   "accept": [
+    "(8 + 4) / 2"
+   ],
+   "tests": 1,
+   "id": "pa0a3ef0d8"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "5 == 5.0",
+   "value": "True",
+   "explain": "An int and a float with the same value are equal.",
+   "distractors": [
+    "False",
+    "5",
+    "'True'"
+   ],
+   "id": "pd21d0cdf8"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "3 != 3",
+   "value": "False",
+   "explain": "!= means \"not equal\", and 3 is equal to 3.",
+   "distractors": [
+    "True",
+    "0",
+    "3"
+   ],
+   "id": "pdbde823c6"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "'apple' < 'banana'",
+   "value": "True",
+   "explain": "Strings compare alphabetically, letter by letter.",
+   "distractors": [
+    "False",
+    "'apple'",
+    "'banana'"
+   ],
+   "id": "p14a03ba18"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "1 < 2 < 3",
+   "value": "True",
+   "explain": "Comparisons chain: this means 1 < 2 and 2 < 3.",
+   "distractors": [
+    "False",
+    "3",
+    "1"
+   ],
+   "id": "pf81f0a9a2"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "3 < 2 < 4",
+   "value": "False",
+   "explain": "A chain means 3 < 2 and 2 < 4; the first part is already False.",
+   "distractors": [
+    "True",
+    "2",
+    "4"
+   ],
+   "id": "pc2501c1ef"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "'5' == 5",
+   "value": "False",
+   "explain": "A string is never equal to a number, even if it looks the same.",
+   "distractors": [
+    "True",
+    "5",
+    "'5'"
+   ],
+   "id": "pcfabf0f05"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "[1, 2] == [1, 2]",
+   "value": "True",
+   "explain": "Lists are equal when they hold the same items in the same order.",
+   "distractors": [
+    "False",
+    "[1, 2]",
+    "2"
+   ],
+   "id": "p2c5184453"
+  },
+  {
+   "kind": "eval",
+   "category": "Comparison",
+   "code": "'abc' == 'ABC'",
+   "value": "False",
+   "explain": "String comparison is case-sensitive.",
+   "distractors": [
+    "True",
+    "'abc'",
+    "0"
+   ],
+   "id": "ped245d0b2"
+  },
+  {
+   "kind": "write",
+   "category": "Comparison",
+   "prompt": "True if x is between 1 and 10, including 1 and 10",
+   "code": "1 <= x <= 10",
+   "value": "True",
+   "explain": "A chained comparison reads just like math.",
+   "distractors": [
+    "1 < x < 10",
+    "1 <= x or x <= 10",
+    "x >= 1 and x < 10"
+   ],
+   "accept": [
+    "x >= 1 and x <= 10",
+    "1 <= x and x <= 10",
+    "x <= 10 and x >= 1"
+   ],
+   "given": "x = 7",
+   "tests": 5,
+   "id": "p4a2d778b7"
+  },
+  {
+   "kind": "write",
+   "category": "Comparison",
+   "prompt": "True if n is not equal to 0",
+   "code": "n != 0",
+   "value": "True",
+   "explain": "!= is \"not equal to\".",
+   "distractors": [
+    "n == 0",
+    "n =! 0",
+    "n = 0"
+   ],
+   "accept": [
+    "0 != n",
+    "not n == 0"
+   ],
+   "given": "n = 5",
+   "tests": 2,
+   "id": "p52fd7384a"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "True and False",
+   "value": "False",
+   "explain": "and is True only when both sides are True.",
+   "distractors": [
+    "True",
+    "None",
+    "0"
+   ],
+   "id": "p1aee59efa"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "not True",
+   "value": "False",
+   "explain": "not flips True to False and False to True.",
+   "distractors": [
+    "True",
+    "None",
+    "-1"
+   ],
+   "id": "p15c2bd043"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "not 0",
+   "value": "True",
+   "explain": "0 is \"falsy\", so not 0 is True.",
+   "distractors": [
+    "False",
+    "0",
+    "1"
+   ],
+   "id": "p455547bb3"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "5 > 3 and 2 > 4",
+   "value": "False",
+   "explain": "5 > 3 is True but 2 > 4 is False, and and needs both.",
+   "distractors": [
+    "True",
+    "5",
+    "4"
+   ],
+   "id": "p60972c80b"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "not (3 > 1 or 2 > 5)",
+   "value": "False",
+   "explain": "The or part is True (3 > 1), and not flips it.",
+   "distractors": [
+    "True",
+    "3",
+    "1"
+   ],
+   "id": "pedaf91beb"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "True or False and False",
+   "value": "True",
+   "explain": "and goes before or: True or (False and False).",
+   "distractors": [
+    "False",
+    "None",
+    "0"
+   ],
+   "id": "peaf513132"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "0 or 'default'",
+   "value": "'default'",
+   "explain": "or gives back the first truthy value; 0 is falsy.",
+   "distractors": [
+    "0",
+    "True",
+    "False"
+   ],
+   "id": "p7103f28df"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "'' or 'guest'",
+   "value": "'guest'",
+   "explain": "An empty string is falsy, so or moves on to the next value.",
+   "distractors": [
+    "''",
+    "True",
+    "False"
+   ],
+   "id": "pc7919c983"
+  },
+  {
+   "kind": "eval",
+   "category": "Boolean logic",
+   "code": "3 and 5",
+   "value": "5",
+   "explain": "When everything is truthy, and gives back the last value.",
+   "distractors": [
+    "3",
+    "True",
+    "8"
+   ],
+   "id": "p607a06186"
+  },
+  {
+   "kind": "write",
+   "category": "Boolean logic",
+   "prompt": "True if age is at least 13 and less than 20",
+   "code": "age >= 13 and age < 20",
+   "value": "True",
+   "explain": "and requires both conditions to be True.",
+   "distractors": [
+    "age >= 13 or age < 20",
+    "age > 13 and age < 20",
+    "age >= 13 and age <= 20"
+   ],
+   "accept": [
+    "13 <= age < 20",
+    "age < 20 and age >= 13",
+    "13 <= age and age < 20"
+   ],
+   "given": "age = 15",
+   "tests": 5,
+   "id": "pce2ab8f98"
+  },
+  {
+   "kind": "write",
+   "category": "Boolean logic",
+   "prompt": "True if the string s is empty (use truthiness)",
+   "code": "not s",
+   "value": "True",
+   "explain": "An empty string is falsy, so not s is True only when s is empty.",
+   "distractors": [
+    "s",
+    "bool(s)",
+    "s == ' '"
+   ],
+   "accept": [
+    "s == ''",
+    "len(s) == 0"
+   ],
+   "given": "s = ''",
+   "tests": 2,
+   "id": "p4100d244b"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "'py' + 'thon'",
+   "value": "'python'",
+   "explain": "+ joins (concatenates) two strings, with no space added.",
+   "distractors": [
+    "'py thon'",
+    "'thonpy'",
+    "6"
+   ],
+   "id": "p6c41b2773"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "'ha' * 3",
+   "value": "'hahaha'",
+   "explain": "Multiplying a string by a number repeats it.",
+   "distractors": [
+    "'ha3'",
+    "'ha ha ha'",
+    "6"
+   ],
+   "id": "p3c55da7bf"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "s[0]",
+   "value": "'p'",
+   "explain": "Indexing starts at 0, so [0] is the first character.",
+   "distractors": [
+    "'y'",
+    "'n'",
+    "'o'"
+   ],
+   "given": "s = 'python'",
+   "id": "pb4ed748c5"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "s[-1]",
+   "value": "'n'",
+   "explain": "Negative indexes count from the end; -1 is the last character.",
+   "distractors": [
+    "'p'",
+    "'o'",
+    "'y'"
+   ],
+   "given": "s = 'python'",
+   "id": "p7e5b0584d"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "s[1:4]",
+   "value": "'yth'",
+   "explain": "A slice starts at index 1 and stops just BEFORE index 4.",
+   "distractors": [
+    "'pyth'",
+    "'ytho'",
+    "'yt'"
+   ],
+   "given": "s = 'python'",
+   "id": "pb2a4289a2"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "s[::-1]",
+   "value": "'nohtyp'",
+   "explain": "A step of -1 walks backward, reversing the string.",
+   "distractors": [
+    "'python'",
+    "'n'",
+    "'p'"
+   ],
+   "given": "s = 'python'",
+   "id": "p728db8984"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "len('hello')",
+   "value": "5",
+   "explain": "len() counts the characters.",
+   "distractors": [
+    "4",
+    "6",
+    "'o'"
+   ],
+   "id": "pb7936d2a5"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "'Hello'.upper()",
+   "value": "'HELLO'",
+   "explain": ".upper() returns an all-uppercase copy.",
+   "distractors": [
+    "'hello'",
+    "'Hello'",
+    "'HeLLo'"
+   ],
+   "id": "p7e3a2d18a"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "'  hi  '.strip()",
+   "value": "'hi'",
+   "explain": ".strip() removes spaces from both ends.",
+   "distractors": [
+    "'  hi'",
+    "'hi  '",
+    "' hi '"
+   ],
+   "id": "p6e57d8f6a"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "'a,b,c'.split(',')",
+   "value": "['a', 'b', 'c']",
+   "explain": ".split() breaks a string into a list at each separator.",
+   "distractors": [
+    "'abc'",
+    "['a,b,c']",
+    "('a', 'b', 'c')"
+   ],
+   "id": "p4598c40ac"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "'-'.join(['a', 'b', 'c'])",
+   "value": "'a-b-c'",
+   "explain": ".join() glues list items together with the string in between.",
+   "distractors": [
+    "'abc'",
+    "'a-b-c-'",
+    "'-a-b-c'"
+   ],
+   "id": "pfe6891ce6"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "f'{2 + 3} apples'",
+   "value": "'5 apples'",
+   "explain": "In an f-string, the code inside {} is run and its result inserted.",
+   "distractors": [
+    "'2 + 3 apples'",
+    "'{2 + 3} apples'",
+    "'23 apples'"
+   ],
+   "id": "p3565fed6e"
+  },
+  {
+   "kind": "eval",
+   "category": "Strings",
+   "code": "f'Hi {name}!'",
+   "value": "'Hi Ken!'",
+   "explain": "An f-string replaces {name} with the value of name.",
+   "distractors": [
+    "'Hi {name}!'",
+    "'Hi name!'",
+    "'Hi Ken'"
+   ],
+   "given": "name = 'Ken'",
+   "id": "pa29a059b1"
+  },
+  {
+   "kind": "write",
+   "category": "Strings",
+   "prompt": "The first 3 characters of the string s",
+   "code": "s[:3]",
+   "value": "'pyt'",
+   "explain": "A slice with no start begins at index 0 and stops before 3.",
+   "distractors": [
+    "s[3]",
+    "s[:2]",
+    "s[1:3]"
+   ],
+   "accept": [
+    "s[0:3]"
+   ],
+   "given": "s = 'python'",
+   "tests": 2,
+   "id": "pd259872ef"
+  },
+  {
+   "kind": "write",
+   "category": "Strings",
+   "prompt": "The last character of the string s",
+   "code": "s[-1]",
+   "value": "'n'",
+   "explain": "Index -1 always means the last item.",
+   "distractors": [
+    "s[len(s)]",
+    "s[0]",
+    "s[1]"
+   ],
+   "accept": [
+    "s[len(s) - 1]"
+   ],
+   "given": "s = 'python'",
+   "tests": 2,
+   "id": "p7fc5acd1e"
+  },
+  {
+   "kind": "write",
+   "category": "Strings",
+   "prompt": "An f-string that gives \"Ken is 30\" using the variables name and age",
+   "code": "f'{name} is {age}'",
+   "value": "'Ken is 30'",
+   "explain": "Put f before the quotes and the variable names inside {}.",
+   "distractors": [
+    "'{name} is {age}'",
+    "f'name is age'",
+    "name + ' is ' + age"
+   ],
+   "accept": [],
+   "given": "name = 'Ken'\nage = 30",
+   "tests": 1,
+   "id": "p713d706ca"
+  },
+  {
+   "kind": "write",
+   "category": "Strings",
+   "prompt": "The string s converted to all lowercase",
+   "code": "s.lower()",
+   "value": "'python'",
+   "explain": "String methods are called with a dot: s.lower().",
+   "distractors": [
+    "s.lowercase()",
+    "lower(s)",
+    "s.upper()"
+   ],
+   "accept": [],
+   "given": "s = 'PyThon'",
+   "tests": 1,
+   "id": "p26ee209d4"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "nums[1]",
+   "value": "20",
+   "explain": "Index 1 is the second item, because counting starts at 0.",
+   "distractors": [
+    "10",
+    "30",
+    "1"
+   ],
+   "given": "nums = [10, 20, 30, 40]",
+   "id": "p5f5dac08b"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "nums[-2]",
+   "value": "30",
+   "explain": "-2 is the second item from the end.",
+   "distractors": [
+    "20",
+    "40",
+    "10"
+   ],
+   "given": "nums = [10, 20, 30, 40]",
+   "id": "p9b95cd06b"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "nums[1:3]",
+   "value": "[20, 30]",
+   "explain": "A slice gives items from index 1 up to, but not including, index 3.",
+   "distractors": [
+    "[20, 30, 40]",
+    "[10, 20, 30]",
+    "[10, 20]"
+   ],
+   "given": "nums = [10, 20, 30, 40]",
+   "id": "p75dfa9879"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "len(nums)",
+   "value": "4",
+   "explain": "len() counts the items in the list.",
+   "distractors": [
+    "3",
+    "40",
+    "5"
+   ],
+   "given": "nums = [10, 20, 30, 40]",
+   "id": "p6e4ae1649"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "[1, 2] + [3]",
+   "value": "[1, 2, 3]",
+   "explain": "+ joins two lists into one new list.",
+   "distractors": [
+    "[4, 5]",
+    "[1, 2, [3]]",
+    "6"
+   ],
+   "id": "p2f558eb8c"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "[0] * 3",
+   "value": "[0, 0, 0]",
+   "explain": "Multiplying a list repeats its items.",
+   "distractors": [
+    "[0]",
+    "0",
+    "[3]"
+   ],
+   "id": "p4c573ebe2"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "(1, 2, 3)[0]",
+   "value": "1",
+   "explain": "Tuples are indexed just like lists.",
+   "distractors": [
+    "2",
+    "(1,)",
+    "0"
+   ],
+   "id": "p53881ba9d"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "d['b']",
+   "value": "2",
+   "explain": "d[key] looks up the value stored under that key.",
+   "distractors": [
+    "1",
+    "'b'",
+    "'a'"
+   ],
+   "given": "d = {'a': 1, 'b': 2}",
+   "id": "p0b1fcf0fa"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "len(d)",
+   "value": "2",
+   "explain": "len() of a dict counts its key/value pairs.",
+   "distractors": [
+    "4",
+    "3",
+    "1"
+   ],
+   "given": "d = {'a': 1, 'b': 2}",
+   "id": "pdea7f6578"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "d.get('z', 0)",
+   "value": "0",
+   "explain": ".get() returns the default (here 0) when the key is missing.",
+   "distractors": [
+    "None",
+    "'z'",
+    "1"
+   ],
+   "given": "d = {'a': 1, 'b': 2}",
+   "id": "p3562bf815"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "sum([1, 2, 3])",
+   "value": "6",
+   "explain": "sum() adds up all the numbers.",
+   "distractors": [
+    "3",
+    "123",
+    "[6]"
+   ],
+   "id": "p7e2a2134f"
+  },
+  {
+   "kind": "eval",
+   "category": "Lists, tuples & dicts",
+   "code": "sorted([3, 1, 2])",
+   "value": "[1, 2, 3]",
+   "explain": "sorted() returns a new list in ascending order.",
+   "distractors": [
+    "[3, 1, 2]",
+    "[3, 2, 1]",
+    "[2, 1, 3]"
+   ],
+   "id": "pc1b9d7967"
+  },
+  {
+   "kind": "write",
+   "category": "Lists, tuples & dicts",
+   "prompt": "The number of items in the list items",
+   "code": "len(items)",
+   "value": "3",
+   "explain": "len() works on lists, strings, tuples and dicts.",
+   "distractors": [
+    "items.len()",
+    "length(items)",
+    "items.count()"
+   ],
+   "accept": [],
+   "given": "items = [5, 6, 7]",
+   "tests": 1,
+   "id": "p1b5e82f52"
+  },
+  {
+   "kind": "write",
+   "category": "Lists, tuples & dicts",
+   "prompt": "The value stored under the key 'age' in the dict person",
+   "code": "person['age']",
+   "value": "30",
+   "explain": "Use square brackets with the key to look up a value.",
+   "distractors": [
+    "person[age]",
+    "person.age",
+    "person('age')"
+   ],
+   "accept": [
+    "person.get('age')"
+   ],
+   "given": "person = {'name': 'Ken', 'age': 30}",
+   "tests": 1,
+   "id": "p7a86022b6"
+  },
+  {
+   "kind": "write",
+   "category": "Lists, tuples & dicts",
+   "prompt": "The last two items of the list nums",
+   "code": "nums[-2:]",
+   "value": "[30, 40]",
+   "explain": "Start the slice at -2 and leave the end empty to go to the end.",
+   "distractors": [
+    "nums[-2]",
+    "nums[:-2]",
+    "nums[-1:]"
+   ],
+   "accept": [
+    "nums[len(nums) - 2:]"
+   ],
+   "given": "nums = [10, 20, 30, 40]",
+   "tests": 2,
+   "id": "pf48062ad4"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "'a' in 'cat'",
+   "value": "True",
+   "explain": "in checks whether something appears inside.",
+   "distractors": [
+    "False",
+    "1",
+    "'a'"
+   ],
+   "id": "p561e43fb3"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "'at' in 'cat'",
+   "value": "True",
+   "explain": "For strings, in checks for a substring, not just one letter.",
+   "distractors": [
+    "False",
+    "2",
+    "'at'"
+   ],
+   "id": "p2fb838202"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "3 in [1, 2, 3]",
+   "value": "True",
+   "explain": "3 is one of the items in the list.",
+   "distractors": [
+    "False",
+    "2",
+    "3"
+   ],
+   "id": "pf0aab807e"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "'3' in [1, 2, 3]",
+   "value": "False",
+   "explain": "The string '3' is not the same as the number 3.",
+   "distractors": [
+    "True",
+    "2",
+    "'3'"
+   ],
+   "id": "pfb65b27e3"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "'b' in {'a': 1, 'b': 2}",
+   "value": "True",
+   "explain": "in on a dict checks the keys.",
+   "distractors": [
+    "False",
+    "2",
+    "'b'"
+   ],
+   "id": "p7e4a23515"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "2 in {'a': 1, 'b': 2}",
+   "value": "False",
+   "explain": "in on a dict checks keys, not values.",
+   "distractors": [
+    "True",
+    "'b'",
+    "1"
+   ],
+   "id": "p526b98169"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "5 not in [1, 2, 3]",
+   "value": "True",
+   "explain": "not in is True when the item is missing.",
+   "distractors": [
+    "False",
+    "5",
+    "None"
+   ],
+   "id": "p7fcdc748f"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "x is None",
+   "value": "True",
+   "explain": "Use is to check whether something is None.",
+   "distractors": [
+    "False",
+    "None",
+    "'None'"
+   ],
+   "given": "x = None",
+   "id": "pd7b072687"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "a is b",
+   "value": "True",
+   "explain": "b = a makes b a second name for the SAME list object.",
+   "distractors": [
+    "False",
+    "[1, 2]",
+    "None"
+   ],
+   "given": "a = [1, 2]\nb = a",
+   "id": "p70d59d97a"
+  },
+  {
+   "kind": "eval",
+   "category": "Membership & identity",
+   "code": "a is b",
+   "value": "False",
+   "explain": "Same contents (a == b is True), but two separate list objects.",
+   "distractors": [
+    "True",
+    "[1, 2]",
+    "None"
+   ],
+   "given": "a = [1, 2]\nb = [1, 2]",
+   "id": "pd7c3aa170"
+  },
+  {
+   "kind": "write",
+   "category": "Membership & identity",
+   "prompt": "True if 'x' does not appear in the string word",
+   "code": "'x' not in word",
+   "value": "True",
+   "explain": "not in is the opposite of in.",
+   "distractors": [
+    "word not in 'x'",
+    "'x' in word",
+    "word.has('x')"
+   ],
+   "accept": [
+    "not 'x' in word",
+    "not ('x' in word)"
+   ],
+   "given": "word = 'cat'",
+   "tests": 2,
+   "id": "p710708ffd"
+  },
+  {
+   "kind": "write",
+   "category": "Membership & identity",
+   "prompt": "True if the variable result is None",
+   "code": "result is None",
+   "value": "True",
+   "explain": "is None is the standard way to test for None.",
+   "distractors": [
+    "result = None",
+    "result == 'None'",
+    "result in None"
+   ],
+   "accept": [
+    "result == None"
+   ],
+   "given": "result = None",
+   "tests": 2,
+   "id": "pc12c55d54"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "int('42')",
+   "value": "42",
+   "explain": "int() turns a string of digits into a whole number.",
+   "distractors": [
+    "'42'",
+    "42.0",
+    "4"
+   ],
+   "id": "pb3f6994d9"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "int(3.9)",
+   "value": "3",
+   "explain": "int() chops off the decimal part; it does not round.",
+   "distractors": [
+    "4",
+    "3.9",
+    "'3'"
+   ],
+   "id": "pb8ad389b7"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "float('2.5')",
+   "value": "2.5",
+   "explain": "float() turns a string into a decimal number.",
+   "distractors": [
+    "'2.5'",
+    "2",
+    "3.0"
+   ],
+   "id": "p71be00cbf"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "str(10)",
+   "value": "'10'",
+   "explain": "str() turns a value into text.",
+   "distractors": [
+    "10",
+    "10.0",
+    "'ten'"
+   ],
+   "id": "pfea218a95"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "str(5) + '5'",
+   "value": "'55'",
+   "explain": "Both sides are strings, so + joins them.",
+   "distractors": [
+    "10",
+    "'10'",
+    "55"
+   ],
+   "id": "p700748590"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "int('7') + 1",
+   "value": "8",
+   "explain": "int('7') is the number 7, so this is normal addition.",
+   "distractors": [
+    "'71'",
+    "'8'",
+    "71"
+   ],
+   "id": "p0382211ee"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "bool(0)",
+   "value": "False",
+   "explain": "0 is falsy.",
+   "distractors": [
+    "True",
+    "0",
+    "None"
+   ],
+   "id": "p2a813b359"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "bool('')",
+   "value": "False",
+   "explain": "An empty string is falsy.",
+   "distractors": [
+    "True",
+    "''",
+    "None"
+   ],
+   "id": "p1d939a394"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "bool('False')",
+   "value": "True",
+   "explain": "Any non-empty string is truthy, even the text \"False\".",
+   "distractors": [
+    "False",
+    "'False'",
+    "None"
+   ],
+   "id": "pfa66e1b06"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "bool([])",
+   "value": "False",
+   "explain": "An empty list is falsy.",
+   "distractors": [
+    "True",
+    "[]",
+    "0"
+   ],
+   "id": "pfcd68e826"
+  },
+  {
+   "kind": "eval",
+   "category": "Type conversion",
+   "code": "bool(-1)",
+   "value": "True",
+   "explain": "Every number except 0 is truthy, including negatives.",
+   "distractors": [
+    "False",
+    "-1",
+    "0"
+   ],
+   "id": "p4203309ce"
+  },
+  {
+   "kind": "write",
+   "category": "Type conversion",
+   "prompt": "Convert the string '25' into a whole number",
+   "code": "int('25')",
+   "value": "25",
+   "explain": "int() converts text to an integer.",
+   "distractors": [
+    "str(25)",
+    "'25'.int()",
+    "float('25')"
+   ],
+   "accept": [],
+   "tests": 1,
+   "id": "pc1797fe5e"
+  },
+  {
+   "kind": "write",
+   "category": "Type conversion",
+   "prompt": "Join the text 'Age: ' with the number stored in age",
+   "code": "'Age: ' + str(age)",
+   "value": "'Age: 30'",
+   "explain": "You cannot + a string and an int; convert the number with str() first.",
+   "distractors": [
+    "'Age: ' + age",
+    "'Age: ' + int(age)",
+    "'Age: ' + 'age'"
+   ],
+   "accept": [
+    "f'Age: {age}'",
+    "'Age: ' + f'{age}'"
+   ],
+   "given": "age = 30",
+   "tests": 1,
+   "id": "pba12b5d3f"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "'yes' if 5 > 3 else 'no'",
+   "value": "'yes'",
+   "explain": "The condition 5 > 3 is True, so the first value is used.",
+   "distractors": [
+    "'no'",
+    "True",
+    "'yes no'"
+   ],
+   "id": "pc7cc29d09"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "'yes' if 2 > 3 else 'no'",
+   "value": "'no'",
+   "explain": "The condition is False, so the value after else is used.",
+   "distractors": [
+    "'yes'",
+    "False",
+    "None"
+   ],
+   "id": "pece814488"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "'even' if x % 2 == 0 else 'odd'",
+   "value": "'odd'",
+   "explain": "7 % 2 is 1, not 0, so the else value wins.",
+   "distractors": [
+    "'even'",
+    "1",
+    "False"
+   ],
+   "given": "x = 7",
+   "id": "pa4f9b4ad8"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "n if n >= 0 else -n",
+   "value": "4",
+   "explain": "n is negative, so -n is used: -(-4) is 4.",
+   "distractors": [
+    "-4",
+    "0",
+    "True"
+   ],
+   "given": "n = -4",
+   "id": "p3c3394558"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "'pass' if score >= 60 else 'fail'",
+   "value": "'pass'",
+   "explain": "85 >= 60 is True, so the first value is used.",
+   "distractors": [
+    "'fail'",
+    "True",
+    "85"
+   ],
+   "given": "score = 85",
+   "id": "pd366040ae"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "0 if [] else 1",
+   "value": "1",
+   "explain": "An empty list is falsy, so the else value is used.",
+   "distractors": [
+    "0",
+    "[]",
+    "None"
+   ],
+   "id": "p4efeecec4"
+  },
+  {
+   "kind": "eval",
+   "category": "Conditional expressions",
+   "code": "name if name else 'guest'",
+   "value": "'guest'",
+   "explain": "name is an empty string (falsy), so the fallback is used.",
+   "distractors": [
+    "''",
+    "'name'",
+    "None"
+   ],
+   "given": "name = ''",
+   "id": "p8d7930127"
+  },
+  {
+   "kind": "write",
+   "category": "Conditional expressions",
+   "prompt": "'adult' if age is 18 or more, otherwise 'minor'",
+   "code": "'adult' if age >= 18 else 'minor'",
+   "value": "'adult'",
+   "explain": "Pattern: value_if_true if condition else value_if_false.",
+   "distractors": [
+    "'adult' if age > 18 else 'minor'",
+    "age >= 18 ? 'adult' : 'minor'",
+    "'minor' if age >= 18 else 'adult'"
+   ],
+   "accept": [
+    "'minor' if age < 18 else 'adult'"
+   ],
+   "given": "age = 30",
+   "tests": 3,
+   "id": "p4409e2e06"
+  },
+  {
+   "kind": "write",
+   "category": "Conditional expressions",
+   "prompt": "The larger of a and b, as a conditional expression",
+   "code": "a if a > b else b",
+   "value": "5",
+   "explain": "Pick a when it is bigger, otherwise b.",
+   "distractors": [
+    "a if a < b else b",
+    "a > b if a else b",
+    "if a > b: a else: b"
+   ],
+   "accept": [
+    "a if a >= b else b",
+    "b if b > a else a",
+    "b if b >= a else a",
+    "b if a < b else a"
+   ],
+   "given": "a = 3\nb = 5",
+   "tests": 3,
+   "id": "p75774af54"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "[x * 2 for x in [1, 2, 3]]",
+   "value": "[2, 4, 6]",
+   "explain": "Builds a new list by doubling each item.",
+   "distractors": [
+    "[1, 2, 3, 1, 2, 3]",
+    "12",
+    "[3, 4, 5]"
+   ],
+   "id": "p39da989d4"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "[x for x in range(5)]",
+   "value": "[0, 1, 2, 3, 4]",
+   "explain": "range(5) counts from 0 up to, but not including, 5.",
+   "distractors": [
+    "[1, 2, 3, 4, 5]",
+    "[0, 1, 2, 3, 4, 5]",
+    "5"
+   ],
+   "id": "p46d90c9a0"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "[x for x in range(10) if x % 3 == 0]",
+   "value": "[0, 3, 6, 9]",
+   "explain": "The if part keeps only numbers divisible by 3 (0 counts).",
+   "distractors": [
+    "[3, 6, 9]",
+    "[0, 3, 6]",
+    "[1, 4, 7]"
+   ],
+   "id": "p67d892f5b"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "[c.upper() for c in 'abc']",
+   "value": "['A', 'B', 'C']",
+   "explain": "Looping over a string gives one character at a time.",
+   "distractors": [
+    "'ABC'",
+    "['ABC']",
+    "['a', 'b', 'c']"
+   ],
+   "id": "p22bc7bc08"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "[len(w) for w in ['hi', 'hey']]",
+   "value": "[2, 3]",
+   "explain": "Makes a list of the length of each word.",
+   "distractors": [
+    "5",
+    "[2]",
+    "['hi', 'hey']"
+   ],
+   "id": "p2fbd66986"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "{x: x ** 2 for x in [1, 2, 3]}",
+   "value": "{1: 1, 2: 4, 3: 9}",
+   "explain": "A dict comprehension builds key: value pairs.",
+   "distractors": [
+    "[1, 4, 9]",
+    "{1: 2, 2: 4, 3: 6}",
+    "{1: 1, 4: 2, 9: 3}"
+   ],
+   "id": "p89434f3f5"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "{w: len(w) for w in ['a', 'bb']}",
+   "value": "{'a': 1, 'bb': 2}",
+   "explain": "Each word becomes a key, and its length becomes the value.",
+   "distractors": [
+    "{1: 'a', 2: 'bb'}",
+    "[1, 2]",
+    "{'a': 'a', 'bb': 'bb'}"
+   ],
+   "id": "pd3d3485ae"
+  },
+  {
+   "kind": "eval",
+   "category": "Comprehensions",
+   "code": "sum([x for x in [1, 2, 3, 4] if x > 2])",
+   "value": "7",
+   "explain": "Keeps 3 and 4, then adds them.",
+   "distractors": [
+    "3",
+    "10",
+    "2"
+   ],
+   "id": "p826451f36"
+  },
+  {
+   "kind": "write",
+   "category": "Comprehensions",
+   "prompt": "A list of the squares of 1 through 5",
+   "code": "[x ** 2 for x in range(1, 6)]",
+   "value": "[1, 4, 9, 16, 25]",
+   "explain": "range(1, 6) gives 1 to 5; x ** 2 squares each one.",
+   "distractors": [
+    "[x ** 2 for x in range(5)]",
+    "[x * 2 for x in range(1, 6)]",
+    "[x ** 2 for x in range(1, 5)]"
+   ],
+   "accept": [
+    "[x * x for x in range(1, 6)]",
+    "[n ** 2 for n in range(1, 6)]",
+    "[n * n for n in range(1, 6)]",
+    "[x ** 2 for x in [1, 2, 3, 4, 5]]"
+   ],
+   "tests": 1,
+   "id": "pbc565769c"
+  },
+  {
+   "kind": "write",
+   "category": "Comprehensions",
+   "prompt": "Only the even numbers from the list nums",
+   "code": "[n for n in nums if n % 2 == 0]",
+   "value": "[2, 4, 6]",
+   "explain": "Put the condition at the end to filter items.",
+   "distractors": [
+    "[n % 2 == 0 for n in nums]",
+    "[n for n in nums if n % 2 == 1]",
+    "[n for n in nums if n / 2 == 0]"
+   ],
+   "accept": [
+    "[x for x in nums if x % 2 == 0]"
+   ],
+   "given": "nums = [1, 2, 3, 4, 6]",
+   "tests": 1,
+   "id": "p71bb3827e"
+  },
+  {
+   "kind": "write",
+   "category": "Comprehensions",
+   "prompt": "A dict that maps each word in words to its length",
+   "code": "{w: len(w) for w in words}",
+   "value": "{'hi': 2, 'hello': 5}",
+   "explain": "Use {key: value for ...} to build a dict.",
+   "distractors": [
+    "[len(w) for w in words]",
+    "{len(w): w for w in words}",
+    "{w: w for w in words}"
+   ],
+   "accept": [
+    "{word: len(word) for word in words}"
+   ],
+   "given": "words = ['hi', 'hello']",
+   "tests": 1,
+   "id": "pa5cec99d3"
+  }
+ ]
+}
